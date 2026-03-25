@@ -1,0 +1,140 @@
+direction: down
+
+title: {
+  label: Discussion Flow
+  near: top-center
+  shape: text
+  style: {
+    font-size: 32
+    bold: true
+    font-color: "#e5e2e1"
+  }
+}
+
+p0: {
+  label: |md
+  ## Phase 0 — So Where Should We Go?
+  Each member pitches their ideal destination
+  **400 tokens/person**
+
+  Phil → Claire → Haley → Alex → Luke → Manny
+  |
+  style: {
+    fill: "#201f1f"
+    stroke: "#adc6ff"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    stroke-width: 3
+    font-size: 16
+  }
+}
+
+p1: {
+  label: |md
+  ## Phase 1 — Wait, That's a Terrible Idea
+  React to others' proposals — name names, be specific
+  **500 tokens/person**
+
+  Phil → Claire → Haley → Alex → Luke → Manny
+  |
+  style: {
+    fill: "#201f1f"
+    stroke: "#ffb3b5"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    stroke-width: 3
+    font-size: 16
+  }
+}
+
+p2: {
+  label: |md
+  ## Phase 2 — Okay But What If...
+  Propose compromises and alliances, find overlap
+  **500 tokens/person**
+
+  Phil → Claire → Haley → Alex → Luke → Manny
+  |
+  style: {
+    fill: "#201f1f"
+    stroke: "#f1c100"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    stroke-width: 3
+    font-size: 16
+  }
+}
+
+p3: {
+  label: |md
+  ## Phase 3 — Can We All Just Agree?
+  State non-negotiables and what you'd give up
+  **400 tokens/person**
+
+  Luke → Manny → Haley → Alex → Claire → Phil
+  *(kids speak first)*
+  |
+  style: {
+    fill: "#201f1f"
+    stroke: "#8b90a0"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    stroke-width: 3
+    font-size: 16
+  }
+}
+
+p4: {
+  label: |md
+  ## Phase 4 — The Parents Have Decided
+  Claire announces, Phil backs it up, kids react
+  **600 tokens (parents) / 300 tokens (kids)**
+
+  Claire → Phil → Haley → Alex → Luke → Manny
+  *(asymmetric prompts: parents decide, kids react)*
+  |
+  style: {
+    fill: "#201f1f"
+    stroke: "#4b8eff"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    stroke-width: 3
+    font-size: 16
+  }
+}
+
+p0 -> p1: "pitch complete" {
+  style: {
+    stroke: "#adc6ff"
+    font-color: "#8b90a0"
+    font-size: 14
+    stroke-width: 2
+  }
+}
+
+p1 -> p2: "reactions in" {
+  style: {
+    stroke: "#ffb3b5"
+    font-color: "#8b90a0"
+    font-size: 14
+    stroke-width: 2
+  }
+}
+
+p2 -> p3: "compromises proposed" {
+  style: {
+    stroke: "#f1c100"
+    font-color: "#8b90a0"
+    font-size: 14
+    stroke-width: 2
+  }
+}
+
+p3 -> p4: "non-negotiables stated" {
+  style: {
+    stroke: "#8b90a0"
+    font-color: "#8b90a0"
+    font-size: 14
+    stroke-width: 2
+  }
+}

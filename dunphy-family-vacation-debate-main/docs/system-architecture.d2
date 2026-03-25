@@ -1,0 +1,281 @@
+direction: down
+
+title: {
+  label: System Architecture
+  near: top-center
+  shape: text
+  style: {
+    font-size: 32
+    bold: true
+    font-color: "#e5e2e1"
+  }
+}
+
+# --- Entry Points ---
+entry: Entry Points {
+  style: {
+    fill: "#1c1b1b"
+    stroke: "#414755"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    font-size: 18
+  }
+
+  terminal: "Terminal UI\nmain.py / terminal_app.py" {
+    style: {
+      fill: "#353534"
+      stroke: "#8b90a0"
+      border-radius: 8
+      font-color: "#e5e2e1"
+      font-size: 16
+    }
+  }
+
+  browser: "Browser UI\nbrowser_app.py (FastAPI + SSE)" {
+    style: {
+      fill: "#353534"
+      stroke: "#8b90a0"
+      border-radius: 8
+      font-color: "#e5e2e1"
+      font-size: 16
+    }
+  }
+}
+
+# --- Orchestrator ---
+orchestrator: "Orchestrator\ndiscussion/orchestrator.py" {
+  style: {
+    fill: "#201f1f"
+    stroke: "#adc6ff"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    stroke-width: 3
+    font-size: 18
+  }
+}
+
+# --- Agents (horizontal row) ---
+agents: Family Agents {
+  grid-columns: 6
+  style: {
+    fill: "#1c1b1b"
+    stroke: "#414755"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    font-size: 18
+  }
+
+  phil: Phil {
+    style: {
+      fill: "#adc6ff"
+      stroke: "#adc6ff"
+      border-radius: 8
+      font-color: "#001a41"
+      bold: true
+      font-size: 16
+    }
+  }
+
+  claire: Claire {
+    style: {
+      fill: "#ffb3b5"
+      stroke: "#ffb3b5"
+      border-radius: 8
+      font-color: "#680019"
+      bold: true
+      font-size: 16
+    }
+  }
+
+  haley: Haley {
+    style: {
+      fill: "#f1c100"
+      stroke: "#f1c100"
+      border-radius: 8
+      font-color: "#241a00"
+      bold: true
+      font-size: 16
+    }
+  }
+
+  alex: Alex {
+    style: {
+      fill: "#8b90a0"
+      stroke: "#8b90a0"
+      border-radius: 8
+      font-color: "#131313"
+      bold: true
+      font-size: 16
+    }
+  }
+
+  luke: Luke {
+    style: {
+      fill: "#ffb4ab"
+      stroke: "#ffb4ab"
+      border-radius: 8
+      font-color: "#690005"
+      bold: true
+      font-size: 16
+    }
+  }
+
+  manny: Manny {
+    style: {
+      fill: "#4b8eff"
+      stroke: "#4b8eff"
+      border-radius: 8
+      font-color: "#ffffff"
+      bold: true
+      font-size: 16
+    }
+  }
+}
+
+# --- Side nodes ---
+personas: "Persona Files\nfamily-prompts/*.md" {
+  style: {
+    fill: "#353534"
+    stroke: "#414755"
+    border-radius: 8
+    font-color: "#c1c6d7"
+    font-size: 16
+  }
+}
+
+config: "Configuration" {
+  style: {
+    fill: "#1c1b1b"
+    stroke: "#414755"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    font-size: 18
+  }
+
+  phases: "Phase Definitions\ndiscussion/phases.py" {
+    style: {
+      fill: "#353534"
+      stroke: "#f1c100"
+      border-radius: 8
+      font-color: "#e5e2e1"
+      font-size: 16
+    }
+  }
+
+  tracker: "Token Tracker\nutils/token_tracker.py" {
+    style: {
+      fill: "#353534"
+      stroke: "#8b90a0"
+      border-radius: 8
+      font-color: "#e5e2e1"
+      font-size: 16
+    }
+  }
+}
+
+# --- LLM Backend ---
+llm: LLM Backend {
+  style: {
+    fill: "#1c1b1b"
+    stroke: "#414755"
+    border-radius: 12
+    font-color: "#e5e2e1"
+    font-size: 18
+  }
+
+  client: "LLM Client\nutils/llm_client.py" {
+    style: {
+      fill: "#353534"
+      stroke: "#4b8eff"
+      border-radius: 8
+      font-color: "#e5e2e1"
+      font-size: 16
+    }
+  }
+
+  gemini: "Gemini 2.5 Flash" {
+    style: {
+      fill: "#4b8eff"
+      stroke: "#4b8eff"
+      border-radius: 8
+      font-color: "#ffffff"
+      bold: true
+      font-size: 16
+    }
+  }
+
+  mock: "Mock Mode" {
+    style: {
+      fill: "#353534"
+      stroke: "#8b90a0"
+      border-radius: 8
+      font-color: "#8b90a0"
+      stroke-dash: 5
+      font-size: 16
+    }
+  }
+}
+
+# --- Vertical flow connections ---
+entry -> orchestrator: {
+  style: {
+    stroke: "#8b90a0"
+    stroke-width: 2
+  }
+}
+
+orchestrator -> agents: "dispatches turns" {
+  style: {
+    stroke: "#adc6ff"
+    stroke-width: 2
+    font-color: "#8b90a0"
+    font-size: 14
+  }
+}
+
+agents -> llm.client: {
+  style: {
+    stroke: "#4b8eff"
+    stroke-width: 2
+  }
+}
+
+llm.client -> llm.gemini: {
+  style: {
+    stroke: "#4b8eff"
+  }
+}
+
+llm.client -> llm.mock: {
+  style: {
+    stroke: "#8b90a0"
+    stroke-dash: 5
+  }
+}
+
+# --- Lateral connections ---
+orchestrator -> config: "reads phases & tracks tokens" {
+  style: {
+    stroke: "#f1c100"
+    font-color: "#8b90a0"
+    font-size: 14
+  }
+}
+
+agents -> personas: "loads persona at runtime" {
+  style: {
+    stroke: "#414755"
+    font-color: "#8b90a0"
+    font-size: 14
+  }
+}
+
+# --- Callback connection ---
+orchestrator -> entry.browser: "SSE callbacks" {
+  style: {
+    stroke: "#adc6ff"
+    stroke-dash: 3
+    font-color: "#8b90a0"
+    font-size: 14
+  }
+}
